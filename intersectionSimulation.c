@@ -25,6 +25,8 @@
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
 #include <X11/extensions/Xdbe.h>
+#include <semaphore.h>
+sem_t sem;
 
 void init();
 void init_xwindows(int, int);
@@ -129,8 +131,9 @@ void *traffic(void *arg)
 		// Is car in the intersection???
 		if (overlap(&cars[carnum], &intersection))
 		{
-			// Car is in the intersection.
-			while (overlap(&cars[carnum], &intersection))
+			sem_wait(&sem)
+				// Car is in the intersection.
+				while (overlap(&cars[carnum], &intersection))
 			{
 				// Loop here until out of the intersection.
 				fib(rand() % 5 + 2);
@@ -140,6 +143,8 @@ void *traffic(void *arg)
 				cars[carnum].pos[0] += cars[carnum].vel[0];
 				cars[carnum].pos[1] += cars[carnum].vel[1];
 			}
+			// Car is out of the intersection.
+			sem_post(&sem);
 		}
 		// Is car outside of the window???
 		// Car will enter from other side of window.
