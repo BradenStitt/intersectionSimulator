@@ -151,6 +151,16 @@ void *traffic(void *arg)
 		// left
 		if (cars[carnum].pos[0] < -20 && cars[carnum].vel[0] < 0.0)
 		{
+			if (rand() % 4 == carnum)
+			{
+				cars[carnum].h = 9;
+				cars[carnum].w = 15;
+			}
+			else
+			{
+				cars[carnum].h = 18;
+				cars[carnum].w = 18;
+			}
 			cars[carnum].pos[0] += g.xres + 40.0;
 			cars[carnum].vel[0] = -(rand() % 3 + 1);
 			cars[carnum].vel[0] *= 0.0002;
@@ -158,6 +168,16 @@ void *traffic(void *arg)
 		// top
 		if (cars[carnum].pos[1] < -20 && cars[carnum].vel[1] < 0.0)
 		{
+			if (rand() % 4 == carnum)
+			{
+				cars[carnum].h = 15;
+				cars[carnum].w = 9;
+			}
+			else
+			{
+				cars[carnum].h = 18;
+				cars[carnum].w = 18;
+			}
 			cars[carnum].pos[1] += g.yres + 40.0;
 			cars[carnum].vel[1] = -(rand() % 3 + 1);
 			cars[carnum].vel[1] *= 0.0002;
@@ -165,6 +185,16 @@ void *traffic(void *arg)
 		// right
 		if (cars[carnum].pos[0] > g.xres + 20 && cars[carnum].vel[0] > 0.0)
 		{
+			if (rand() % 4 == carnum)
+			{
+				cars[carnum].h = 9;
+				cars[carnum].w = 15;
+			}
+			else
+			{
+				cars[carnum].h = 18;
+				cars[carnum].w = 18;
+			}
 			cars[carnum].pos[0] -= (g.xres + 40.0);
 			cars[carnum].vel[0] = (rand() % 3 + 1);
 			cars[carnum].vel[0] *= 0.0002;
@@ -172,6 +202,16 @@ void *traffic(void *arg)
 		// bottom
 		if (cars[carnum].pos[1] > g.yres + 20 && cars[carnum].vel[1] > 0.0)
 		{
+			if (rand() % 4 == carnum)
+			{
+				cars[carnum].h = 15;
+				cars[carnum].w = 9;
+			}
+			else
+			{
+				cars[carnum].h = 18;
+				cars[carnum].w = 18;
+			}
 			cars[carnum].pos[1] -= (g.yres + 40.0);
 			cars[carnum].vel[1] = (rand() % 3 + 1);
 			cars[carnum].vel[1] *= 0.0002;
